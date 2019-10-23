@@ -10,6 +10,8 @@ window.addEventListener("load", function() {
 
    faultyItemsDiv.style.visibility = "hidden";
 
+
+   let randomNumber =Math.floor(Math.random() * (6 - 0 + 1)) + 0;
    
    let missionTargetElement = document.getElementById("missionTarget");
    let form = document.querySelector("form");
@@ -20,13 +22,13 @@ window.addEventListener("load", function() {
          missionTargetElement.innerHTML = `
          <h2>Mission Destination</h2>
             <ol>
-               <li>Name: ${json[2].name}</li>
-               <li>Diameter: ${json[2].diameter}</li>
-               <li>Star: ${json[2].star}</li>
-               <li>Distance from Earth: ${json[2].distance}</li>
-               <li>Number of Moons: ${json[2].moons}</li>
+               <li>Name: ${json[randomNumber].name}</li>
+               <li>Diameter: ${json[randomNumber].diameter}</li>
+               <li>Star: ${json[randomNumber].star}</li>
+               <li>Distance from Earth: ${json[randomNumber].distance}</li>
+               <li>Number of Moons: ${json[randomNumber].moons}</li>
             </ol>
-            <img src="${json[2].image}">
+            <img src="${json[randomNumber].image}">
          `;
       });
    });
@@ -45,7 +47,9 @@ window.addEventListener("load", function() {
          // Validation: checks that all fields have the right input. 
       } else if (isNaN(fuelLevelInput.value) || isNaN(cargoMassInput.value)) {
          alert("Make sure to enter valid information for each field!");
-       
+
+      }else if (!isNaN(pilotNameInput.value) || !isNaN(copilotNameInput.value)){
+         alert("Make sure to enter valid information for each field!");
       } else {
          faultyItemsDiv.style.visibility = "visible";
          pilotStatus.innerHTML = `Pilot ${pilotNameInput.value} is ready for launch`;
